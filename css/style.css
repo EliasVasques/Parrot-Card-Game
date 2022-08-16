@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #eef9bf;
+}
+
+h1 {
+    color: #75b79e;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    margin: 50px 0;
+}
+
+/* CARDS */
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    background-color: #a7e9af;
+    width: 160px;
+    height: 210px;
+    margin: 20px 20px;
+
+    border: 1px solid #99cea8;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card img {
+    width: 150px;
+}
+

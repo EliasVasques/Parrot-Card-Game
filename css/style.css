@@ -38,3 +38,7 @@ h1 {
     width: 150px;
 }
 
+/**/
+.nao-aparece {
+    display: none;
+}

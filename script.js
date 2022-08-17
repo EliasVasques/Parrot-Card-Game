@@ -81,12 +81,11 @@ const terminouJogo = () => {
 
     if (cartasViradas.length === qtdCartas) {
         emJogo = false;
-        alert(`Você ganhou em ${qtdTentativas} jogadas!`)
+        alert(`Você ganhou em ${qtdTentativas} jogadas num tempo de ${getMinutos()} minutos e ${getSegundos()} segundos!`)
 
         let querJogar = prompt("Quer jogar novamente? (sim/não)")
         while (querJogar !== 'sim' && querJogar !== 'não') {
             querJogar = prompt("Quer jogar novamente? (sim/não)")
-
         }
         if (querJogar === "sim") {
             iniciar()
@@ -110,18 +109,19 @@ const iniciar = () => {
     document.querySelector('.timer').innerHTML = '0:0'
 
     qtdTentativas = 0
-    
+
     perguntarQtdCartas();
     cartasEmJogoEmbaralhadas();
     porCartasVirada();
 }
 
+const getMinutos = () => Math.floor(timer / 60);
+const getSegundos = () => Math.floor(timer % 60);
+
 const atualizarTimer = () => {
     if(!emJogo) return;
     timer++;
-    let minutos = Math.floor(timer / 60);
-    let segundos = Math.floor(timer % 60);
-    document.querySelector('.timer').innerHTML = `${minutos}:${segundos}`;
+    document.querySelector('.timer').innerHTML = `${getMinutos()}:${getSegundos()}`;
 }
 
 setInterval(atualizarTimer, 1000);

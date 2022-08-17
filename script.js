@@ -22,8 +22,8 @@ const perguntarQtdCartas = () => {
 const porCartasVirada = () => {
     const divCartas = document.querySelector('.cartas');
     for (let i = 0; i < qtdCartas; i++) {
-        divCartas.innerHTML += 
-    `<div 
+        divCartas.innerHTML +=
+            `<div 
         class="carta"
         onclick="virarCarta(this, ${i})">
         <img src="img/papagaio.png" alt="">
@@ -37,8 +37,8 @@ const cartasEmJogoEmbaralhadas = () => {
     /* 1 de cada */
     let cartasEscolhidas = todasCartas.slice(0, qtdPares);
 
-    /* 2 de cada*/ 
-    cartasEmJogo =  cartasEscolhidas.concat(cartasEscolhidas);
+    /* 2 de cada*/
+    cartasEmJogo = cartasEscolhidas.concat(cartasEscolhidas);
 
     /* embaralhar */
     cartasEmJogo.sort(comparador)
@@ -47,10 +47,35 @@ const cartasEmJogoEmbaralhadas = () => {
 const virarCarta = (carta, posicaoCarta) => {
     let img = carta.querySelector('img');
     img.src = `gifs/${cartasEmJogo[posicaoCarta]}`;
+    carta.classList.add('clicada')
+
+    // ver se é a primeira ou segunda carta
+    let cartasAbertas = document.querySelectorAll('.clicada');
+
+    // se for a primeira manter 
+
+    // se for a segunda verificar se são iguais
+    if (cartasAbertas.length === 2) {
+        if (cartasAbertas[0].querySelector('img').src !==
+            cartasAbertas[1].querySelector('img').src) {
+                setTimeout(() => desvirarCarta(cartasAbertas[0]), 1000)
+                setTimeout(() => desvirarCarta(cartasAbertas[1]), 1000)
+        }
+        cartasAbertas[0].classList.remove('clicada')
+        cartasAbertas[1].classList.remove('clicada')
+    }
+
+    // se forem iguais manter
+
+    // se forem diferentes virar de volta
 }
 
-function comparador() { 
-	return Math.random() - 0.5; 
+const desvirarCarta = (carta) => {
+    carta.querySelector('img').src = "img/papagaio.png"
+}
+
+function comparador() {
+    return Math.random() - 0.5;
 }
 
 perguntarQtdCartas();

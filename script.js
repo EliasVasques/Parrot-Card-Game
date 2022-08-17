@@ -1,9 +1,7 @@
 
 let qtdCartas;
-const qtdMaxCartas = 14;
-
+let qtdTentativas = 0;
 const todasCartas = ['bobrossparrot.gif', 'explodyparrot.gif', 'fiestaparrot.gif', 'metalparrot.gif', 'revertitparrot.gif', 'tripletsparrot.gif', 'unicornparrot.gif'];
-
 let cartasEmJogo;
 
 const perguntarQtdCartas = () => {
@@ -16,7 +14,7 @@ const perguntarQtdCartas = () => {
             break
         }
     }
-    qtdCartas = numeroEscolhido;
+    qtdCartas = Number(numeroEscolhido);
 }
 
 const porCartasVirada = () => {
@@ -45,39 +43,59 @@ const cartasEmJogoEmbaralhadas = () => {
 }
 
 const virarCarta = (carta, posicaoCarta) => {
-    let img = carta.querySelector('img');
-    img.src = `gifs/${cartasEmJogo[posicaoCarta]}`;
-    carta.classList.add('clicada')
+    let cartasAbertas = document.querySelectorAll('.tentando');
 
-    // ver se é a primeira ou segunda carta
-    let cartasAbertas = document.querySelectorAll('.clicada');
-
-    // se for a primeira manter 
-
-    // se for a segunda verificar se são iguais
-    if (cartasAbertas.length === 2) {
-        if (cartasAbertas[0].querySelector('img').src !==
-            cartasAbertas[1].querySelector('img').src) {
-                setTimeout(() => desvirarCarta(cartasAbertas[0]), 1000)
-                setTimeout(() => desvirarCarta(cartasAbertas[1]), 1000)
-        }
-        cartasAbertas[0].classList.remove('clicada')
-        cartasAbertas[1].classList.remove('clicada')
+    if (cartasAbertas.length === 0 || cartasAbertas.length === 1) {
+        let img = carta.querySelector('img');
+        img.src = `gifs/${cartasEmJogo[posicaoCarta]}`;
+        carta.classList.add('tentando')
     }
 
-    // se forem iguais manter
+    /* lendo cartasAbertas novamente */
+    cartasAbertas = document.querySelectorAll('.tentando');
 
-    // se forem diferentes virar de volta
+    if (cartasAbertas.length === 2) {
+        if (cartasAbertas[0].querySelector('img').src !== cartasAbertas[1].querySelector('img').src) {
+            setTimeout(() => desvirarCarta(cartasAbertas[0]), 1000)
+            setTimeout(() => desvirarCarta(cartasAbertas[1]), 1000)
+        } else {
+            cartasAbertas[0].classList.add('acertou')
+            cartasAbertas[0].classList.remove('tentando')
+            cartasAbertas[1].classList.add('acertou')
+            cartasAbertas[1].classList.remove('tentando')
+        }
+        qtdTentativas++;
+    }
+
+    terminouJogo();
+
+}
+
+const terminouJogo = () => {
+    const cartasViradas = document.querySelectorAll('.acertou');
+
+    if (cartasViradas.length === qtdCartas) {
+        alert(`Você ganhou em ${qtdTentativas} jogadas!`)
+        iniciar();
+    }
 }
 
 const desvirarCarta = (carta) => {
     carta.querySelector('img').src = "img/papagaio.png"
+    carta.classList.remove('tentando')
 }
 
-function comparador() {
+const comparador = () => {
     return Math.random() - 0.5;
 }
 
-perguntarQtdCartas();
-cartasEmJogoEmbaralhadas();
-porCartasVirada();
+const iniciar = () => {
+    document.querySelector('.cartas').innerHTML = '';
+    qtdTentativas = 0
+    perguntarQtdCartas();
+    cartasEmJogoEmbaralhadas();
+    porCartasVirada();
+}
+
+iniciar();
+

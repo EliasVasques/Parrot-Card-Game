@@ -1,1 +1,1 @@
--criar carta com tags innerHtml
+-só falta fazer o efeito de virar carta com css

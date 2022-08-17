@@ -48,6 +48,8 @@ const cartasEmJogoEmbaralhadas = () => {
 const virarCarta = (carta, posicaoCarta) => {
     if(!emJogo) emJogo = true;
 
+    if(carta.classList.contains('acertou')) return;
+
     let cartasAbertas = document.querySelectorAll('.tentando');
 
     if (cartasAbertas.length === 0 || cartasAbertas.length === 1) {

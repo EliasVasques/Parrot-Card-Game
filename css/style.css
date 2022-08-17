@@ -15,13 +15,13 @@ h1 {
 }
 
 /* CARDS */
-.cards {
+.cartas {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.card {
+.carta {
     background-color: #a7e9af;
     width: 160px;
     height: 210px;
@@ -34,7 +34,7 @@ h1 {
     justify-content: center;
     align-items: center;
 }
-.card img {
+.carta img {
     width: 150px;
 }
 

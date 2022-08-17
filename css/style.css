@@ -42,3 +42,18 @@ h1 {
 .nao-aparece {
     display: none;
 }
+
+/* TIMER */
+.timer {
+    background-color:#a7e9af;
+    color:#38584c;
+    width: 100px;
+
+    font-size: 35px;
+    text-align: center;
+
+    position: fixed;
+    right: 0;
+    top: 100px;
+    border-radius: 10px 0 0 10px;
+}

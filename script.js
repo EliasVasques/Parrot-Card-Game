@@ -4,6 +4,9 @@ let qtdTentativas = 0;
 const todasCartas = ['bobrossparrot.gif', 'explodyparrot.gif', 'fiestaparrot.gif', 'metalparrot.gif', 'revertitparrot.gif', 'tripletsparrot.gif', 'unicornparrot.gif'];
 let cartasEmJogo;
 
+let timer = 0;
+let emJogo = false;
+
 const perguntarQtdCartas = () => {
     let numeroEscolhido;
     while (true) {
@@ -43,6 +46,8 @@ const cartasEmJogoEmbaralhadas = () => {
 }
 
 const virarCarta = (carta, posicaoCarta) => {
+    if(!emJogo) emJogo = true;
+
     let cartasAbertas = document.querySelectorAll('.tentando');
 
     if (cartasAbertas.length === 0 || cartasAbertas.length === 1) {
@@ -75,8 +80,17 @@ const terminouJogo = () => {
     const cartasViradas = document.querySelectorAll('.acertou');
 
     if (cartasViradas.length === qtdCartas) {
+        emJogo = false;
         alert(`Você ganhou em ${qtdTentativas} jogadas!`)
-        iniciar();
+
+        let querJogar = prompt("Quer jogar novamente? (sim/não)")
+        while (querJogar !== 'sim' && querJogar !== 'não') {
+            querJogar = prompt("Quer jogar novamente? (sim/não)")
+
+        }
+        if (querJogar === "sim") {
+            iniciar()
+        }
     }
 }
 
@@ -91,11 +105,26 @@ const comparador = () => {
 
 const iniciar = () => {
     document.querySelector('.cartas').innerHTML = '';
+
+    timer = 0;
+    document.querySelector('.timer').innerHTML = '0:0'
+
     qtdTentativas = 0
+    
     perguntarQtdCartas();
     cartasEmJogoEmbaralhadas();
     porCartasVirada();
 }
+
+const atualizarTimer = () => {
+    if(!emJogo) return;
+    timer++;
+    let minutos = Math.floor(timer / 60);
+    let segundos = Math.floor(timer % 60);
+    document.querySelector('.timer').innerHTML = `${minutos}:${segundos}`;
+}
+
+setInterval(atualizarTimer, 1000);
 
 iniciar();
 

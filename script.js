@@ -58,7 +58,7 @@ const virarCarta = (carta, posicaoCarta) => {
         carta.classList.add('tentando')
     }
 
-    /* lendo cartasAbertas novamente */
+    /* atualizando array */
     cartasAbertas = document.querySelectorAll('.tentando');
 
     if (cartasAbertas.length === 2) {
@@ -117,8 +117,12 @@ const iniciar = () => {
     porCartasVirada();
 }
 
-const getMinutos = () => Math.floor(timer / 60);
-const getSegundos = () => Math.floor(timer % 60);
+const getMinutos = () => horarioFormatado(Math.floor(timer / 60));
+const getSegundos = () => horarioFormatado(Math.floor(timer % 60));
+const horarioFormatado = (valor) => {
+    if(valor < 10) return '0' + String(valor)
+    return String(valor);
+}
 
 const atualizarTimer = () => {
     if(!emJogo) return;

@@ -1,59 +1,67 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: #eef9bf;
+  background-color: #eef9bf;
 }
 
 h1 {
-    color: #75b79e;
-    font-size: 50px;
-    font-weight: bold;
-    text-align: center;
-    margin: 50px 0;
+  color: #75b79e;
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
+  margin: 50px 0;
 }
 
 /* CARDS */
 .cartas {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .carta {
-    background-color: #a7e9af;
-    width: 160px;
-    height: 210px;
-    margin: 20px 20px;
+  background-color: #a7e9af;
+  width: 160px;
+  height: 210px;
+  margin: 20px 20px;
 
-    border: 1px solid #99cea8;
-    border-radius: 10px;
+  border: 1px solid #99cea8;
+  border-radius: 10px;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: all 0.2s linear;
 }
 .carta img {
-    width: 150px;
+  width: 150px;
 }
 
 /**/
 .nao-aparece {
-    display: none;
+  display: none;
 }
 
 /* TIMER */
 .timer {
-    background-color:#a7e9af;
-    color:#38584c;
-    width: 100px;
+  background-color: #a7e9af;
+  color: #38584c;
+  width: 100px;
 
-    font-size: 35px;
-    text-align: center;
+  font-size: 35px;
+  text-align: center;
 
-    position: fixed;
-    right: 0;
-    top: 100px;
-    border-radius: 10px 0 0 10px;
+  position: fixed;
+  right: 0;
+  top: 100px;
+  border-radius: 10px 0 0 10px;
+}
+
+/* EFEITO VIRAR CARTA */
+.acertou,
+.tentando {
+  transform: rotateY(180deg);
 }

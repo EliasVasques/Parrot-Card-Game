@@ -108,7 +108,7 @@ const iniciar = () => {
     document.querySelector('.cartas').innerHTML = '';
 
     timer = 0;
-    document.querySelector('.timer').innerHTML = '0:0'
+    document.querySelector('.timer').innerHTML = '00:00'
 
     qtdTentativas = 0
 

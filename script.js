@@ -117,12 +117,10 @@ const iniciar = () => {
     porCartasVirada();
 }
 
-const getMinutos = () => horarioFormatado(Math.floor(timer / 60));
-const getSegundos = () => horarioFormatado(Math.floor(timer % 60));
-const horarioFormatado = (valor) => {
-    if(valor < 10) return '0' + String(valor)
-    return String(valor);
-}
+const getMinutos = () => formatarHorario(Math.floor(timer / 60));
+const getSegundos = () => formatarHorario(Math.floor(timer % 60));
+const formatarHorario = (valor) => String(valor).padStart(2, '0');
+
 
 const atualizarTimer = () => {
     if(!emJogo) return;
